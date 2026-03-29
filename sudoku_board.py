@@ -29,7 +29,34 @@ class Sudoku:
     @classmethod
     def from_str(cls, s: str) -> "Sudoku":
         sudoku = {}
-        # YOUR CODE HERE
+
+        # Counters to keep track of the location in the dictionary (originally used enumerate() but the boxes through that off)
+        current_row = 1
+        current_column = 1
+
+        # Iterate through each line of the string
+        for row in s.split('\n'):
+            # If the line is empty, move on without incrementing current_row
+            if row == '':
+                continue
+            
+            # Iterate through all cells in the row
+            for value in row.split(' '):
+                # If there is nothing between spaces, move on without increment current_column
+                if value == '':
+                    continue
+                
+                # If there is a value, add it to the dictionary
+                if value != '-':
+                    sudoku[current_row, current_column] = int(value)
+
+                # Increment the column
+                current_column += 1
+            
+            # Reset the column, and increment the row
+            current_column = 1
+            current_row += 1
+
         return cls(sudoku)
 
     @classmethod
