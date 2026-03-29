@@ -7,7 +7,23 @@ class Sudoku:
 
     def __str__(self) -> str:
         s = ""
-        # YOUR CODE HERE
+        # Iterate through all cells
+        for i in range(1, 10):
+            for j in range(1, 10):
+                # Add the number in that cell
+                s += str(self.sudoku[(i, j)]) + ' '
+
+                # Add the space for the box
+                if j == 3 or j == 6:
+                    s += ' '
+            
+            # Add an empty line for box
+            if i == 3 or i == 6:
+                s += '\n'
+            
+            # Start new row
+            s += '\n'
+        
         return s
 
     @classmethod
