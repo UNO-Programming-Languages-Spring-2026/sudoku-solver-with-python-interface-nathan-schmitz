@@ -1,7 +1,6 @@
 from typing import Tuple
 import clingo
 
-
 class Sudoku:
     def __init__(self, sudoku: dict[Tuple[int, int], int]):
         self.sudoku = sudoku
