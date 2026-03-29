@@ -15,13 +15,13 @@ class Context:
 class ClingoApp(clingo.application.Application):
     def main(self, ctl, files):
         ctl.load("sudoku.lp")
-
-        for f in files:
-            ctl.load(f)
-        if not files:
-            ctl.load('-')
+        ctl.load("sudoku_py.lp")
         
-        ctl.ground()
+        for file in files:
+            with open(file, 'r') as f:
+                context = Context(Sudoku.from_str(f.read()))
+        
+        ctl.ground(context=context)
         ctl.solve()
     
     def print_model(self, model, printer) -> None:
